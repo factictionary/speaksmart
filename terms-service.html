@@ -1,303 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Terms of Service – SpeakSmart AI</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - SpeakSmart: Teleprompter & AI Speech Coach</title>
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --accent-green: #10B981;
+            --bg: #0F0F17;
+            --surface: #181826;
+            --border: #2D2D44;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
 
-    body {
-      background: #0A0A0F;
-      font-family: system-ui, -apple-system, 'Segoe UI', 'Space Mono', 'SF Pro Text', Roboto, sans-serif;
-      color: #E4E4E7;
-      line-height: 1.5;
-      padding: 2rem 1rem;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      background: #13131A;
-      border-radius: 32px;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-      overflow: hidden;
-      border: 1px solid #2A2A35;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
 
-    .header {
-      background: linear-gradient(135deg, #1A1A2A 0%, #0F0F17 100%);
-      padding: 2rem 2rem 1.5rem;
-      border-bottom: 1px solid #2A2A35;
-    }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--surface);
+            padding: 48px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
+        .header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
 
-    .logo-icon {
-      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 700;
-      box-shadow: 0 8px 14px -6px rgba(59,130,246,0.3);
-    }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 185, 129, 0.2));
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
 
-    .logo-text {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #FFFFFF, #A78BFA);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
 
-    .badge {
-      display: inline-block;
-      background: #1F1F2B;
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #A1A1AA;
-      border: 1px solid #2D2D3A;
-      margin-top: 8px;
-    }
+        .effective-date {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
 
-    .last-updated {
-      font-size: 0.8rem;
-      color: #71717A;
-      margin-top: 12px;
-    }
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-top: 36px;
+            margin-bottom: 14px;
+        }
 
-    .content {
-      padding: 2rem;
-    }
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #E2E8F0;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #F9FAFB, #C4B5FD);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-    }
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
 
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 1.8rem 0 1rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 2px solid #2A2A35;
-      color: #E2E8F0;
-    }
+        ul {
+            color: var(--text-secondary);
+            margin-left: 24px;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
 
-    h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 1.5rem 0 0.75rem;
-      color: #C084FC;
-    }
+        li {
+            margin-bottom: 8px;
+        }
 
-    p, li {
-      color: #C9C9D4;
-      margin-bottom: 1rem;
-    }
+        strong {
+            color: #FFFFFF;
+        }
 
-    .notice {
-      background: #1E1E2A;
-      border-left: 4px solid #8B5CF6;
-      padding: 1rem 1.2rem;
-      border-radius: 16px;
-      margin: 1.5rem 0;
-    }
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
 
-    .notice strong {
-      color: #F0F0FF;
-    }
+        .terms-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 14px;
+        }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
+        .terms-card h4 {
+            color: var(--primary);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-    .feature-card {
-      background: #191923;
-      border-radius: 20px;
-      padding: 1rem;
-      border: 1px solid #2A2A35;
-    }
+        .terms-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin: 0;
+        }
 
-    .feature-card h4 {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #D9D9E6;
-    }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-    .feature-card p {
-      font-size: 0.85rem;
-      margin-bottom: 0;
-    }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    hr {
-      border: none;
-      height: 1px;
-      background: #2A2A35;
-      margin: 1.8rem 0;
-    }
+        .contact-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 32px;
+        }
 
-    .contact {
-      background: #0F0F17;
-      border-radius: 24px;
-      padding: 1.2rem 1.5rem;
-      margin-top: 2rem;
-      text-align: center;
-      border: 1px solid #2A2A35;
-    }
+        .footer {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-top: 48px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
 
-    .contact a {
-      color: #A78BFA;
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1px dashed #A78BFA;
-    }
-
-    .footer {
-      background: #0C0C12;
-      padding: 1.2rem 2rem;
-      text-align: center;
-      font-size: 0.75rem;
-      color: #5F5F6E;
-      border-top: 1px solid #22222C;
-    }
-
-    @media (max-width: 640px) {
-      .content {
-        padding: 1.5rem;
-      }
-      .header {
-        padding: 1.5rem;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .container {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 <body>
+
 <div class="container">
-  <div class="header">
-    <div class="logo">
-      <div class="logo-icon">🎤</div>
-      <div class="logo-text">SpeakSmart AI</div>
-    </div>
-    <div class="badge">AI speech coach · On‑device privacy</div>
-    <div class="last-updated">Last updated: March 25, 2026</div>
-  </div>
-
-  <div class="content">
-    <h1>Terms of Service</h1>
-    <p>Welcome to SpeakSmart. By downloading, accessing, or using SpeakSmart ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, please do not use the App.</p>
-
-    <div class="notice">
-      <strong>⚖️ The short version</strong><br>
-      SpeakSmart helps you improve public speaking using on‑device AI. You own your data. Subscriptions unlock premium insights and remove ads. We do not sell your voice or transcripts. These terms explain your rights, our rules, and how to cancel.
+    <div class="header">
+        <div class="badge">LEGAL AGREEMENT</div>
+        <h1>Terms of Service</h1>
+        <p class="effective-date">Last Updated: September 12, 2026 | Effective Date: September 12, 2026</p>
     </div>
 
-    <h2>1. Eligibility & Account</h2>
-    <p>You must be at least 13 years old (or 16 in the EEA) to use SpeakSmart. By using the App, you confirm that you meet this requirement. You may sign in with a Google account to link subscriptions across devices; you are responsible for maintaining the confidentiality of your account credentials.</p>
+    <p>Please read these Terms of Service ("Terms", "Agreement") carefully before using the <strong>SpeakSmart: Teleprompter & AI Speech Coach</strong> mobile application ("App", "Service"), developed and operated by Factictionary ("we", "our", "us").</p>
 
-    <h2>2. Free vs. Pro Features</h2>
-    <p>SpeakSmart offers a free tier with core speech analysis, daily session limits, and ads. A Pro subscription unlocks unlimited sessions, advanced AI signals (e.g., engagement arc, persuasion score, repetition analysis), full history, PDF export, and an ad‑free experience.</p>
-    <div class="feature-grid">
-      <div class="feature-card"><h4>✅ Free tier</h4><p>Daily sessions, basic WPM & filler tracking, 7‑day history, limited practice modes, contains ads.</p></div>
-      <div class="feature-card"><h4>✨ Pro (monthly/yearly)</h4><p>Unlimited sessions, 13+ AI signals, 90‑day history, all modes, PDF export, no ads.</p></div>
-      <div class="feature-card"><h4>🏆 Lifetime</h4><p>One‑time purchase, all Pro features forever, no recurring charges.</p></div>
+    <p>By downloading, installing, accessing, or using SpeakSmart, you agree to be bound by these Terms. If you do not agree to all terms and conditions of this Agreement, do not access or use the application.</p>
+
+    <div class="terms-grid">
+        <div class="terms-card">
+            <h4>🎥 Teleprompter Studio & Floating Overlay</h4>
+            <p>Voice-assisted auto-scroll, camera studio recording, and floating Picture-in-Picture window for multi-app presentation.</p>
+        </div>
+        <div class="terms-card">
+            <h4>🧠 AI Speech Coach & Analytics</h4>
+            <p>On-device real-time pace gauge, filler word detection, coaching modes, scoring breakdown, and PDF reports.</p>
+        </div>
+        <div class="terms-card">
+            <h4>💳 Transparent Subscriptions & Passes</h4>
+            <p>Clear pricing, flexible monthly/yearly subscriptions, modular one-time passes, and VIP Lifetime all-access.</p>
+        </div>
     </div>
 
-    <h2>3. Subscriptions, Billing & Cancellation</h2>
-    <p>Pro subscriptions are handled by Google Play or Apple App Store. By purchasing, you agree to their respective terms and payment policies.</p>
-    <ul style="margin-left: 1.5rem;">
-      <li><strong>Auto‑renewal:</strong> Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period.</li>
-      <li><strong>Cancellation:</strong> You can cancel anytime via your Play Store / App Store account settings. After cancellation, Pro access remains until the paid period ends.</li>
-      <li><strong>Refunds:</strong> Refunds are processed by Google or Apple according to their refund policies. We cannot manually issue refunds for in‑app purchases.</li>
-      <li><strong>Price changes:</strong> If subscription prices change, we will notify you in advance. Continued use after the change constitutes acceptance.</li>
+    <h2>1. Description of Services</h2>
+    <p>SpeakSmart provides a comprehensive mobile teleprompting and speech coaching platform comprising:</p>
+    <ul>
+        <li><strong>Teleprompter Studio:</strong> HD video recording with teleprompter text overlay, adjustable speeds, voice-synced speech tracking, and physical glass mirror prompter mode.</li>
+        <li><strong>Floating Picture-in-Picture Prompter:</strong> Resizable, translucent widget overlaying third-party apps such as Zoom, Teams, Google Meet, YouTube, TikTok, and Instagram.</li>
+        <li><strong>AI Speech Coach:</strong> 100% offline speech recognition detecting pacing (WPM), filler words ("um", "uh", "you know"), pauses, and fluency scoring across practice modes (Freestyle, Interview, Presentation, Pitch, Debate).</li>
+        <li><strong>Analytics & Reports:</strong> Local historical session tracking, badge achievements, and detailed PDF report generation.</li>
     </ul>
 
-    <h2>4. On‑Device Processing & Your Data</h2>
-    <p>Your voice recordings are never uploaded. Speech is transcribed locally using device‑native speech recognition. Audio is discarded immediately after transcription; only the resulting text transcript is stored on your device.</p>
-    <p>Session metrics (scores, filler rates, word counts) remain on your device unless you export them. For full details, see our <a href="https://speaksmart.factictionary.in/privacy-policy.html" target="_blank" style="color:#A78BFA;">Privacy Policy</a>.</p>
-
-    <h2>5. Acceptable Use & Prohibited Conduct</h2>
-    <p>You agree to use SpeakSmart only for lawful purposes and in a way that does not infringe the rights of others. You must not:</p>
-    <ul style="margin-left: 1.5rem;">
-      <li>Reverse engineer, decompile, or attempt to extract the source code of the App.</li>
-      <li>Use the App to record or analyse speech in a way that violates any applicable privacy laws.</li>
-      <li>Exploit the free tier in a manner intended to circumvent session limits or subscription features.</li>
-      <li>Use the App while operating a motor vehicle or engaging in activities that require your full attention.</li>
+    <h2>2. User Accounts & Responsibilities</h2>
+    <ul>
+        <li>You may use SpeakSmart anonymously without creating an account. Optional Google Sign-In is provided via Firebase Authentication to synchronize purchases across your devices.</li>
+        <li>You are solely responsible for all content (scripts, presentation text, recorded videos) created, stored, or exported through the application.</li>
+        <li>You agree not to use the application for any unlawful, defamatory, harassing, or infringing purposes.</li>
     </ul>
 
-    <h2>6. Third‑Party Services & SDKs</h2>
-    <p>SpeakSmart integrates Google services to provide authentication, subscriptions, and crash reporting:</p>
-    <ul style="margin-left: 1.5rem;">
-      <li><strong>Firebase Auth:</strong> used for account linking (email, name, profile photo).</li>
-      <li><strong>Google Play Billing / Apple IAP:</strong> processes payments.</li>
-      <li><strong>AdMob:</strong> displays ads to free users; you may opt out of personalised ads via device settings.</li>
-      <li><strong>Firebase Crashlytics:</strong> collects anonymised crash data to improve stability.</li>
+    <h2>3. Subscriptions, Purchases & Billing</h2>
+    <p>SpeakSmart provides both free functionality and premium paid features through Google Play In-App Billing:</p>
+    
+    <h3>A. Available Plans & Purchase Options</h3>
+    <ul>
+        <li><strong>VIP Lifetime All-Access (One-Time Purchase):</strong> Unlocks all current and future Teleprompter and AI Speech Coach features permanently with zero ads.</li>
+        <li><strong>Pro Yearly Subscription (Auto-Renewable):</strong> Full access to all Pro features with annual billing.</li>
+        <li><strong>Pro Monthly Subscription (Auto-Renewable):</strong> Full access to all Pro features with monthly billing.</li>
+        <li><strong>Teleprompter Pro Pass (One-Time Purchase):</strong> Permanent unlock of unlimited script library, Floating PiP Prompter, Mirror mode, and HD Studio.</li>
+        <li><strong>AI Speech Coach Pass (One-Time Purchase):</strong> Permanent unlock of all 5 coaching modes, unlimited daily practice, and PDF report exports.</li>
+        <li><strong>Remove Ads (One-Time Purchase):</strong> Permanent removal of all banner and interstitial advertisements.</li>
     </ul>
-    <p>These services are governed by their own terms and privacy policies. We do not share voice data or transcripts with them.</p>
 
-    <h2>7. Intellectual Property</h2>
-    <p>The SpeakSmart name, logo, design, and AI analysis methodology are owned by Factictionary. You are granted a non‑exclusive, non‑transferable right to use the App for personal, non‑commercial purposes. You retain ownership of all transcripts and speech metrics you generate.</p>
+    <h3>B. Billing & Automatic Renewal</h3>
+    <ul>
+        <li>Subscriptions automatically renew unless cancelled at least 24 hours prior to the end of the current billing cycle.</li>
+        <li>Payment will be charged to your Google Play Store account upon confirmation of purchase.</li>
+        <li>You can manage or cancel your subscriptions anytime in Google Play Store under <em>Account → Payments & Subscriptions → Subscriptions</em>.</li>
+    </ul>
 
-    <h2>8. Termination & Account Deletion</h2>
-    <p>You may delete your account at any time via Settings → Account → Delete Account. This will permanently remove all locally stored session data and delink your Google account. Subscription management must be handled through Google Play or Apple.</p>
-    <p>We reserve the right to suspend or terminate access if you violate these Terms, with or without notice.</p>
+    <h3>C. Refunds</h3>
+    <p>All in-app purchases and subscriptions are processed by Google Play. Refund requests are subject to Google Play's standard refund policies and can be submitted through your Google Play account.</p>
 
-    <h2>9. Disclaimer & Limitation of Liability</h2>
-    <p>SpeakSmart is provided “as is” without warranties of merchantability, fitness for a particular purpose, or non‑infringement. We do not guarantee that the AI analysis will improve your public speaking skills or produce specific outcomes.</p>
-    <div class="notice">
-      <strong>⛔ No liability for consequential damages</strong><br>
-      To the maximum extent permitted by law, Factictionary shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App, even if advised of the possibility of such damages.
+    <h2>4. Intellectual Property Rights</h2>
+    <ul>
+        <li><strong>Our Property:</strong> The SpeakSmart app, including its proprietary speech analysis algorithms, UI designs, code, graphics, branding, trademarks, and documentation, are the exclusive intellectual property of Factictionary.</li>
+        <li><strong>Your Property:</strong> You retain 100% ownership of all scripts, video recordings, and speech content you create within the app. SpeakSmart claims no ownership rights over your personal content.</li>
+    </ul>
+
+    <h2>5. Privacy & Data Protection</h2>
+    <p>Your privacy is central to SpeakSmart. All audio processing, speech recognition, and video recording happen 100% locally on your device. Please review our <a href="privacy-policy.html">Privacy Policy</a> to understand how device permissions and local data storage are managed.</p>
+
+    <h2>6. Disclaimer of Warranties</h2>
+    <p>SpeakSmart is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. While our AI speech analysis provides helpful educational insights, we do not guarantee specific interview or presentation outcomes.</p>
+
+    <h2>7. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, Factictionary and its developers shall not be liable for any indirect, incidental, consequential, or punitive damages resulting from your use of or inability to use the application.</p>
+
+    <h2>8. Governing Law & Jurisdiction</h2>
+    <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+
+    <h2>9. Modifications to Terms</h2>
+    <p>We reserve the right to modify these Terms at any time. Changes will be reflected with an updated "Effective Date". Your continued use of the application following any modifications constitutes acceptance of the new Terms.</p>
+
+    <div class="contact-box">
+        <h2>10. Contact Information</h2>
+        <p>If you have any questions, feedback, or legal inquiries regarding these Terms of Service, please contact:</p>
+        <p>
+            <strong>Factictionary App Development Team</strong><br>
+            Email: <a href="mailto:factictionary@gmail.com">factictionary@gmail.com</a><br>
+            Website: <a href="https://speaksmart.factictionary.in" target="_blank">https://speaksmart.factictionary.in</a>
+        </p>
     </div>
 
-    <h2>10. Changes to Terms</h2>
-    <p>We may update these Terms from time to time. If we make material changes, we will notify you through the App or via email (if available). Your continued use after the effective date constitutes acceptance of the updated Terms.</p>
-
-    <h2>11. Governing Law & Dispute Resolution</h2>
-    <p>These Terms shall be governed by the laws of India. Any dispute arising out of or relating to these Terms shall first be attempted to be resolved through informal negotiation. If unresolved, disputes shall be submitted to the exclusive jurisdiction of the courts in Hyderabad, India.</p>
-
-    <h2>12. Contact</h2>
-    <div class="contact">
-      📧 Questions about these Terms or your account? Reach out:<br>
-      <a href="mailto:factictionary@gmail.com">factictionary@gmail.com</a>
+    <div class="footer">
+        &copy; 2026 Factictionary. All rights reserved. SpeakSmart: Teleprompter & AI Speech Coach.
     </div>
-
-    <hr>
-
-    <p style="font-size: 0.85rem; text-align: center; color:#71717A;">SpeakSmart – your voice, your progress, always private.</p>
-  </div>
-
-  <div class="footer">
-    © 2026 factictionary · <a href="https://speaksmart.factictionary.in/privacy-policy.html" style="color:#8B5CF6;">Privacy Policy</a>
-  </div>
 </div>
+
 </body>
 </html>
