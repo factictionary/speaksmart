@@ -1,842 +1,1253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeakSmart: AI Speech Coach | Private On-Device Speaking Trainer</title>
-    <meta name="description" content="Become a more confident speaker with SpeakSmart — your private, on-device AI speech coach. Get instant feedback on pace, fillers, clarity and confidence. 6 practice modes, 13 AI signals, 100% private.">
-    <meta name="keywords" content="speech coach, AI speaking, public speaking app, presentation coach, interview prep, pitch practice, filler word detector, speech analytics, SpeakSmart, Factictionary, on-device AI">
-    <meta name="author" content="Factictionary">
-    <meta property="og:title" content="SpeakSmart: AI Speech Coach">
-    <meta property="og:description" content="Speak confidently. Anytime. Anywhere. On-device AI that never sends your voice to the cloud.">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://speaksmart.factictionary.in">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A1128">
+<meta name="description" content="SpeakSmart — Teleprompter Studio & On-Device AI Speech Coach. 100% private. Record flawless videos, deliver confident speeches, and crush filler words with AI-powered real-time feedback. No internet required.">
+<meta name="keywords" content="teleprompter, AI speech coach, public speaking, video teleprompter, filler word counter, speak smart, voice paced prompter">
+<meta property="og:title" content="SpeakSmart — Teleprompter Studio & AI Speech Coach">
+<meta property="og:description" content="The 2-in-1 voice-paced teleprompter & on-device AI speech coach that makes you a flawless speaker. 100% private — nothing ever leaves your phone.">
+<meta property="og:image" content="images/feature-graphic.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart">
+<meta name="twitter:card" content="summary_large_image">
+
+<title>SpeakSmart — Teleprompter Studio & AI Speech Coach | Android App</title>
+
+<link rel="icon" type="image/png" href="images/icon-512.png">
+<link rel="apple-touch-icon" href="images/icon-512.png">
+
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #050816;
+  color: #E6EAF5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+:root {
+  --bg-0: #050816;
+  --bg-1: #0A1128;
+  --bg-2: #0F1A3A;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #E6EAF5;
+  --text-muted: #98A2B8;
+  --text-dim: #6B7390;
+  --accent: #00E5D1;
+  --accent-2: #00B4D8;
+  --accent-glow: rgba(0, 229, 209, 0.35);
+  --grad-1: linear-gradient(135deg, #00E5D1 0%, #00B4D8 50%, #5E60CE 100%);
+  --grad-2: linear-gradient(135deg, #00E5D1, #00B4D8);
+  --grad-glow: radial-gradient(circle at 30% 0%, rgba(0, 229, 209, 0.15) 0%, transparent 50%),
+               radial-gradient(circle at 70% 100%, rgba(94, 96, 206, 0.15) 0%, transparent 50%);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  --shadow-glow: 0 0 40px var(--accent-glow);
+}
+
+/* ============================================
+   LAYOUT CONTAINERS
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.section { padding: 96px 0; position: relative; }
+.section-sm { padding: 64px 0; }
+
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5, 8, 22, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.brand img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 229, 209, 0.25);
+}
+.brand .accent { color: var(--accent); }
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 12px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--grad-1);
+  color: #04111F;
+  box-shadow: 0 8px 24px rgba(0, 229, 209, 0.35), 0 0 0 0 var(--accent-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 229, 209, 0.5), 0 0 0 6px rgba(0, 229, 209, 0.15);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--accent); }
+.btn-lg { padding: 18px 36px; font-size: 16px; }
+.btn-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+  padding: 80px 0 96px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-glow);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 580px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 229, 209, 0.1);
+  border: 1px solid rgba(0, 229, 209, 0.25);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 20px;
+}
+.hero h1 .gradient {
+  background: var(--grad-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin: 0 0 32px;
+  max-width: 540px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-value .accent { color: var(--accent); }
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* Hero visual: phone mockup */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 540px;
+}
+.phone-mockup {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  background: linear-gradient(145deg, #1a1f3a, #0a1128);
+  border-radius: 44px;
+  padding: 12px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.08),
+    0 0 60px rgba(0, 229, 209, 0.15);
+}
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.phone-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 22px;
+  background: #000;
+  border-radius: 14px;
+  z-index: 2;
+}
+
+/* Floating screenshot bubbles */
+.float-card {
+  position: absolute;
+  background: rgba(15, 26, 58, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.float-card-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.float-card.fab-pace {
+  top: 12%;
+  left: -12%;
+  width: 130px;
+  animation: float 6s ease-in-out infinite;
+}
+.float-card.fab-score {
+  bottom: 14%;
+  right: -10%;
+  width: 140px;
+  animation: float 6s ease-in-out infinite 3s;
+}
+.float-card.fab-streak {
+  top: 50%;
+  right: -16%;
+  padding: 10px 14px;
+  animation: float 6s ease-in-out infinite 1.5s;
+}
+.float-card.fab-streak .streak-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.float-card.fab-streak .streak-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ============================================
+   TRUST BAR
+   ============================================ */
+.trust-bar {
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.015);
+}
+.trust-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.trust-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.trust-items {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.trust-item svg { color: var(--accent); }
+
+/* ============================================
+   SECTION HEADINGS
+   ============================================ */
+.section-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 64px;
+}
+.eyebrow {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(0, 229, 209, 0.08);
+  border: 1px solid rgba(0, 229, 209, 0.2);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+.section-head h2 {
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+}
+.section-head p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ============================================
+   FEATURES GRID
+   ============================================ */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  position: relative;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(0, 229, 209, 0.08), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 209, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.feature-card:hover::before { opacity: 1; }
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(0, 229, 209, 0.1);
+  color: var(--accent);
+  margin-bottom: 20px;
+  position: relative;
+}
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.feature-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+.feature-card .feature-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* ============================================
+   SCREENSHOTS SECTION
+   ============================================ */
+.screenshots {
+  background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+}
+.screenshot-track {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 32px 24px 48px;
+  margin: 0 -24px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+.screenshot-track::-webkit-scrollbar { height: 8px; }
+.screenshot-track::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 4px; }
+.screenshot-track::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+.screenshot-item {
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: center;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.screenshot-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 229, 209, 0.3);
+}
+.screenshot-item img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.screenshot-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 14px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.screenshot-cta {
+  text-align: center;
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+}
+.step-card {
+  text-align: center;
+  padding: 32px 24px;
+  position: relative;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--grad-1);
+  color: #04111F;
+  font-size: 1.5rem;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(0, 229, 209, 0.35);
+}
+.step-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.step-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ============================================
+   PRIVACY SECTION
+   ============================================ */
+.privacy {
+  background: linear-gradient(135deg, rgba(0, 229, 209, 0.04), rgba(94, 96, 206, 0.04));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.privacy-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.privacy-text h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+.privacy-text p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin: 0 0 24px;
+}
+.privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.privacy-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 1rem;
+  color: var(--text);
+}
+.privacy-list li svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.privacy-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+}
+.privacy-shield {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--grad-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 80px rgba(0, 229, 209, 0.25);
+  position: relative;
+}
+.privacy-shield::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 209, 0.3);
+  animation: rotate 20s linear infinite;
+}
+.privacy-shield::after {
+  content: '';
+  position: absolute;
+  inset: -80px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 209, 0.15);
+  animation: rotate 30s linear infinite reverse;
+}
+@keyframes rotate {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+.privacy-shield svg {
+  width: 120px;
+  height: 120px;
+  color: #04111F;
+  z-index: 1;
+}
+
+/* ============================================
+   COACHING MODES / USE CASES
+   ============================================ */
+.usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.usecase-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.25s;
+}
+.usecase-card:hover {
+  border-color: rgba(0, 229, 209, 0.3);
+  background: var(--surface-2);
+  transform: translateX(4px);
+}
+.usecase-emoji {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.usecase-text h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+.usecase-text p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  text-align: center;
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-glow);
+  pointer-events: none;
+}
+.final-cta .container { position: relative; z-index: 1; }
+.final-cta h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px;
+}
+.final-cta .gradient-text {
+  background: var(--grad-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.final-cta p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.rating-stars { color: #FFB800; letter-spacing: 2px; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+.footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
+.footer-links {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.footer-links a:hover { color: var(--text); }
+.footer-meta {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 960px) {
+  .hero .container { grid-template-columns: 1fr; text-align: center; }
+  .hero-content { max-width: 100%; }
+  .hero-cta { justify-content: center; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { min-height: 480px; margin-top: 40px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; gap: 8px; }
+  .privacy-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .privacy-list { text-align: left; max-width: 480px; margin: 0 auto; }
+  .usecases-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .float-card.fab-pace { left: -2%; }
+  .float-card.fab-score { right: -2%; }
+  .float-card.fab-streak { display: none; }
+}
+
+@media (max-width: 560px) {
+  .section { padding: 64px 0; }
+  .hero { padding: 48px 0 64px; }
+  .hero-stats { gap: 20px; }
+  .trust-bar .container { flex-direction: column; gap: 16px; }
+  .footer-content { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
 
-<!-- ============== NAVIGATION ============== -->
-<nav class="navbar" id="navbar">
-    <div class="container nav-container">
-        <a href="#home" class="nav-brand">
-            <span class="brand-logo">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40">
-                            <stop offset="0%" stop-color="#0EA5E9"/>
-                            <stop offset="60%" stop-color="#6366F1"/>
-                            <stop offset="100%" stop-color="#8B5CF6"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
-                    <rect x="17" y="9" width="6" height="14" rx="3" fill="white"/>
-                    <path d="M13 21c0 4 3 7 7 7s7-3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <line x1="20" y1="28" x2="20" y2="32" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="16" y1="32" x2="24" y2="32" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </span>
-            <span class="brand-text">SpeakSmart</span>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container">
+    <a href="#" class="brand">
+      <img src="images/icon-512.png" alt="SpeakSmart Icon">
+      <span>Speak<span class="accent">Smart</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+    <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" class="btn btn-primary" target="_blank" rel="noopener">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M3 20.5V3.5c0-.85.65-1.5 1.5-1.5 .27 0 .53.07.76.19L13.55 9.3l-3.36 3.36c-.2.2-.2.51 0 .71l3.36 3.36-8.29 7.11c-.23.12-.49.19-.76.19-.85 0-1.5-.65-1.5-1.5zM14.97 9.74l3.55-3.55-12.4-3.04 8.85 6.59zm2.83-2.83L21.34 8.7c.78.42.78 1.58 0 2L17.8 12.49l-3.83-3.79 3.83-3.79zM5.12 19.45l12.4-3.04-3.55-3.55-8.85 6.59z"/></svg>
+      Install Free
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-badge">100% On-Device • No Internet Needed</span>
+      <h1>Speak like a pro.<br><span class="gradient">Without saying "um".</span></h1>
+      <p class="hero-subtitle">SpeakSmart is the 2-in-1 voice-paced teleprompter &amp; on-device AI speech coach. Record flawless videos, deliver confident presentations, and crush every filler word — privately, on your phone.</p>
+      <div class="hero-cta">
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <svg class="btn-icon" viewBox="0 0 24 24"><path d="M3 20.5V3.5c0-.85.65-1.5 1.5-1.5 .27 0 .53.07.76.19L13.55 9.3l-3.36 3.36c-.2.2-.2.51 0 .71l3.36 3.36-8.29 7.11c-.23.12-.49.19-.76.19-.85 0-1.5-.65-1.5-1.5zM14.97 9.74l3.55-3.55-12.4-3.04 8.85 6.59zm2.83-2.83L21.34 8.7c.78.42.78 1.58 0 2L17.8 12.49l-3.83-3.79 3.83-3.79zM5.12 19.45l12.4-3.04-3.55-3.55-8.85 6.59z"/></svg>
+          Get it on Google Play
         </a>
-        <div class="nav-links" id="navLinks">
-            <a href="#features">Features</a>
-            <a href="#modes">Practice Modes</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="nav-mobile-cta">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                Get the App
-            </a>
+        <a href="#features" class="btn btn-ghost btn-lg">See features</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value"><span class="accent">17+</span></span>
+          <span class="stat-label">Filler words caught</span>
         </div>
-        <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-            Get the App
-        </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="stat-item">
+          <span class="stat-value"><span class="accent">13</span></span>
+          <span class="stat-label">Pro AI signals</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value"><span class="accent">100%</span></span>
+          <span class="stat-label">On-device private</span>
+        </div>
+      </div>
     </div>
-</nav>
-<div class="nav-overlay" id="navOverlay"></div>
 
-<!-- ============== HERO SECTION ============== -->
-<section class="hero" id="home">
-    <div class="hero-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="grid-overlay"></div>
-    </div>
-    <div class="container hero-container">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                <span>100% On-Device · Private AI Coaching</span>
-            </div>
-            <h1 class="hero-title">
-                Speak with <span class="text-gradient">confidence</span>,<br>
-                coach with <span class="text-gradient-2">AI</span>
-            </h1>
-            <p class="hero-subtitle">
-                SpeakSmart listens as you speak, analyses your delivery using on-device AI,
-                and gives you precise, actionable feedback after every session.
-                No internet required. No audio ever leaves your phone.
-            </p>
-            <div class="hero-actions">
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                    Download Free
-                </a>
-                <a href="#how-it-works" class="btn btn-secondary btn-lg">
-                    See how it works
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-            </div>
-            <div class="hero-trust">
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    <span>100% Private</span>
-                </div>
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-                    <span>Works Offline</span>
-                </div>
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    <span>6 Languages</span>
-                </div>
-            </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <img src="images/screenshot-1.png" alt="SpeakSmart app screen">
         </div>
-        <div class="hero-visual">
-            <div class="phone-mockup">
-                <div class="phone-frame">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <div class="app-header-bar">
-                            <div class="app-bar-title">Live Session</div>
-                            <div class="app-bar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <div class="session-mode">INTERVIEW · Question 3 of 5</div>
-                            <div class="session-question">"Tell me about a time you led a difficult team through change."</div>
-                            <div class="record-btn">
-                                <div class="record-pulse"></div>
-                            </div>
-                            <div class="session-timer">00:34</div>
-                        </div>
-                        <div class="waveform">
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                        </div>
-                        <div class="live-tips">
-                            <div class="tip">
-                                <span class="tip-icon">⚡</span>
-                                <span>Pace: 142 wpm — strong</span>
-                            </div>
-                            <div class="tip">
-                                <span class="tip-icon">✓</span>
-                                <span>No filler words detected</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="floating-badge badge-1">
-                    <span class="badge-emoji">🎯</span>
-                    <span class="badge-text">Score: A−</span>
-                </div>
-                <div class="floating-badge badge-2">
-                    <span class="badge-emoji">🔒</span>
-                    <span class="badge-text">Audio never leaves phone</span>
-                </div>
-            </div>
+      </div>
+
+      <div class="float-card fab-pace">
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Live Pace</div>
+        <div style="font-size: 1.3rem; font-weight: 700; color: var(--accent);">145 WPM</div>
+      </div>
+
+      <div class="float-card fab-score">
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Confidence Grade</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">A</span>
+          <span style="font-size: 12px; color: var(--text-muted);">Excellent</span>
         </div>
+      </div>
+
+      <div class="float-card fab-streak">
+        <div class="streak-num">7</div>
+        <div class="streak-label">Day streak 🔥</div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ============== LOGOS / SOCIAL PROOF ============== -->
-<section class="logos-section">
-    <div class="container">
-        <p class="logos-label">Trusted speakers & presenters use SpeakSmart</p>
-        <div class="logo-marquee">
-            <div class="marquee-track">
-                <span class="logo-item">Founders</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Job Seekers</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Debaters</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Professors</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Students</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Sales Leaders</span>
-                <span class="logo-divider"></span>
-                <span class="logo-item">Storytellers</span>
-                <span class="logo-divider"></span>
-            </div>
-        </div>
+<!-- ============ TRUST BAR ============ -->
+<section class="trust-bar">
+  <div class="container">
+    <span class="trust-label">Built by Factictionary</span>
+    <div class="trust-items">
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 13.14l-5-4.87 6.91-1.01L12 1z"/></svg>
+        Rated for 3+
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        Works offline
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z"/></svg>
+        Private by design
+      </span>
+      <span class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        No account needed
+      </span>
     </div>
+  </div>
 </section>
 
-<!-- ============== CORE FEATURES ============== -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">What you get (Free)</div>
-            <h2 class="section-title">Powerful feedback,<br><span class="text-gradient">straight from your pocket</span></h2>
-            <p class="section-subtitle">Every free session delivers actionable signals — the kind that used to require a personal coach.</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <h3>Speaking Pace (WPM)</h3>
-                <p>Detects when you're rushing or dragging. Find your confident, conversational rhythm.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12l3-3 4 4 5-5"/></svg>
-                </div>
-                <h3>Filler Word Detection</h3>
-                <p>Tracks "um", "uh", "like", "basically" and 17 more — with charts that show when they spiked.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                </div>
-                <h3>Vocabulary Clarity</h3>
-                <p>Word variety and precision score — sound articulate without sounding rehearsed.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-4">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <h3>Confidence Signals</h3>
-                <p>Sentence strength and delivery patterns — see exactly where you sound most assured.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-5">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <h3>Letter Grade Score</h3>
-                <p>Intuitive A–F grade for every session. Watch it climb as your skills compound.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon icon-grad-6">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <h3>Live Coaching Tips</h3>
-                <p>Real-time nudges while you speak — fix problems in the moment, not after the meeting.</p>
-            </div>
-        </div>
+<!-- ============ FEATURES ============ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2>Two powerful tools.<br>One private app.</h2>
+      <p>Whether you're recording a TikTok, pitching an investor, or interviewing for your dream job — SpeakSmart has you covered.</p>
     </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+        </div>
+        <h3>Voice-Sync Auto Scroll</h3>
+        <p>Your script scrolls automatically as you speak. Pause, slow down, speed up — the teleprompter stays in sync with your voice using on-device speech recognition.</p>
+        <span class="feature-tag">Teleprompter</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+        </div>
+        <h3>Floating Prompter (PiP)</h3>
+        <p>Read scripts smoothly while recording in TikTok, Instagram Reels, YouTube Shorts, Zoom, Google Meet, or Microsoft Teams. Draggable, transparent, undetectable.</p>
+        <span class="feature-tag">Teleprompter</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h3>1-Tap Script Import</h3>
+        <p>Load scripts instantly from .txt, .docx, .doc, .pdf, and .md files — or just paste. Zero typing. Manage, edit, and organize your library in seconds.</p>
+        <span class="feature-tag">Teleprompter</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <h3>Filler Word Counter</h3>
+        <p>Real-time detection of "um", "uh", "like", "you know", "actually", "basically" and 12+ other filler phrases. See the count drop with every take.</p>
+        <span class="feature-tag">AI Coach</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+        </div>
+        <h3>Live Pace Gauge (WPM)</h3>
+        <p>Dynamic color-coded feedback on your speaking rate. Hit the perfect 120–160 WPM sweet spot for engaging, confident delivery every time.</p>
+        <span class="feature-tag">AI Coach</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3>13 Pro AI Signals</h3>
+        <p>Comprehensive feedback on opening hooks, closing impact, rhetorical devices, tonal assertiveness, energy arcs, audience readability — and more.</p>
+        <span class="feature-tag">AI Coach</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 12H9.5v-2h-2v2H6V9h1.5v2.5h2V9H11v6zm5-1.5c0 1.1-.9 1.5-2.25 1.5H12V9h1.75c1.35 0 2.25.4 2.25 1.5 0 .75-.45 1.15-.9 1.3.6.2 1.4.6 1.4 1.7zM14.5 12.5h-.75V14h.75c.55 0 .85-.25.85-.75s-.3-.75-.85-.75zm.25 1.5h-.65v1.5h.65c.5 0 .95-.25.95-.75s-.45-.75-.95-.75z"/></svg>
+        </div>
+        <h3>Confidence Grade (A+ to F)</h3>
+        <p>Get an instant letter grade and fluency score after every take. Track improvement across sessions with detailed charts and trend lines.</p>
+        <span class="feature-tag">AI Coach</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h3>Executive PDF Reports</h3>
+        <p>Export and share professional speech scorecards with metrics, charts, and improvement tips — perfect for coaches, teachers, and teams.</p>
+        <span class="feature-tag">AI Coach</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+        </div>
+        <h3>Matrix4 Glass Mirror Mode</h3>
+        <p>Hardware-accelerated horizontal &amp; vertical flip mode for 45° beam-splitter glass teleprompter rigs. Studio-grade filming, anywhere.</p>
+        <span class="feature-tag">Pro</span>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<!-- ============== PRACTICE MODES ============== -->
-<section class="modes" id="modes">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">6 Practice Modes</div>
-            <h2 class="section-title">Train for the moments<br><span class="text-gradient-2">that actually matter</span></h2>
-            <p class="section-subtitle">Each mode tunes the scoring algorithm and surfaces coaching tips relevant to that speaking context.</p>
-        </div>
-
-        <div class="modes-grid">
-            <div class="mode-card reveal">
-                <div class="mode-num">01</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-1">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                    </div>
-                    <h3>Free Style <span class="mode-pro">PRO</span></h3>
-                    <p>Open practice, any topic, no time limit. The thinking speaker's playground.</p>
-                </div>
-            </div>
-            <div class="mode-card reveal">
-                <div class="mode-num">02</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-2">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                    </div>
-                    <h3>Interview</h3>
-                    <p>Job and behavioral question simulation. Walk into every interview calm and prepared.</p>
-                </div>
-            </div>
-            <div class="mode-card reveal">
-                <div class="mode-num">03</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-3">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
-                    <h3>Presentation</h3>
-                    <p>Structured formal delivery coaching. Land keynotes, all-hands and team updates.</p>
-                </div>
-            </div>
-            <div class="mode-card reveal">
-                <div class="mode-num">04</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-4">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                    </div>
-                    <h3>Pitch</h3>
-                    <p>Persuasive speaking for investors, clients and stakeholders. Sell ideas that land.</p>
-                </div>
-            </div>
-            <div class="mode-card reveal">
-                <div class="mode-num">05</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-5">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <h3>Debate</h3>
-                    <p>Argument strength, rebuttal, and evidence framing. Win the room with reason.</p>
-                </div>
-            </div>
-            <div class="mode-card reveal">
-                <div class="mode-num">06</div>
-                <div class="mode-content-inner">
-                    <div class="mode-icon-wrap icon-grad-6">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    </div>
-                    <h3>Storytelling</h3>
-                    <p>Narrative arc, tension, and engagement coaching. Make every story unforgettable.</p>
-                </div>
-            </div>
-        </div>
+<!-- ============ SCREENSHOTS ============ -->
+<section class="section screenshots" id="screenshots">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Inside the app</span>
+      <h2>Designed for clarity.<br>Built for confidence.</h2>
+      <p>Every screen is engineered for one job — making you a better speaker, faster.</p>
     </div>
+
+    <div class="screenshot-track">
+      <div class="screenshot-item">
+        <img src="images/screenshot-1.png" alt="SpeakSmart home dashboard">
+        <div class="screenshot-label">Home Dashboard</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-2.png" alt="Teleprompter Studio">
+        <div class="screenshot-label">Teleprompter Studio</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-4.png" alt="Floating Prompter overlay">
+        <div class="screenshot-label">Floating Prompter (PiP)</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-5.png" alt="Live AI speech coaching">
+        <div class="screenshot-label">Live AI Coaching</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-6.png" alt="Practice sessions list">
+        <div class="screenshot-label">Practice History</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-7.png" alt="Performance analytics">
+        <div class="screenshot-label">Performance Analytics</div>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/screenshot-8.png" alt="Detailed session results">
+        <div class="screenshot-label">Session Results</div>
+      </div>
+    </div>
+    <p class="screenshot-cta">← Swipe to see more →</p>
+  </div>
 </section>
 
-<!-- ============== HOW IT WORKS ============== -->
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">How it works</div>
-            <h2 class="section-title">From awkward to articulate<br><span class="text-gradient">in 3 simple steps</span></h2>
-        </div>
-
-        <div class="steps-grid">
-            <div class="step-card reveal">
-                <div class="step-number">1</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                </div>
-                <h3>Pick a Mode</h3>
-                <p>Choose Interview, Pitch, Presentation, Debate, Storytelling or Free Style.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-number">2</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                </div>
-                <h3>Speak Naturally</h3>
-                <p>Talk for 30 seconds or 30 minutes. SpeakSmart listens and analyses in milliseconds.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-number">3</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <h3>Get Feedback</h3>
-                <p>Receive a grade, charts, and personalised AI drills — then improve session by session.</p>
-            </div>
-        </div>
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From script to confident delivery<br>in three simple steps.</h2>
     </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Import or paste your script</h3>
+        <p>Load from .txt, .docx, .pdf, .md, or paste from clipboard. Zero typing, zero friction.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Hit record &amp; speak naturally</h3>
+        <p>SpeakSmart listens, scrolls your script in sync, and captures your voice. Use the floating overlay over Zoom, TikTok, or Instagram.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get instant AI feedback</h3>
+        <p>See filler words, pace, confidence grade, and 13 pro signals. Track your progress and export executive PDF reports.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============== PRO FEATURES ============== -->
-<section class="pro-section">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Pro AI Signals</div>
-            <h2 class="section-title">13 advanced signals<br><span class="text-gradient-2">that turn good into great</span></h2>
-            <p class="section-subtitle">Pro unlocks the full coaching stack — beyond pace and fillers, into the art of persuasion and presence.</p>
-        </div>
-
-        <div class="pro-grid">
-            <div class="pro-card reveal">
-                <div class="pro-num">01</div>
-                <h3>Tonal Profile</h3>
-                <p>Assertive, hesitant, enthusiastic or formal — see how your tone lands.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">02</div>
-                <h3>Personalized AI Drills</h3>
-                <p>Tailored exercises targeting your unique weak points.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">03</div>
-                <h3>Filler Timeline</h3>
-                <p>See exactly which second of your speech spiked with fillers.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">04</div>
-                <h3>Opening Strength</h3>
-                <p>Did you hook the audience in the first 20 seconds?</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">05</div>
-                <h3>Closing Strength</h3>
-                <p>Did you land your ending with impact and clarity?</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">06</div>
-                <h3>Rhetorical Effectiveness</h3>
-                <p>Rule-of-three, contrast frames, evidence phrases, CTAs.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">07</div>
-                <h3>Engagement Arc</h3>
-                <p>Early/mid/late energy map — fix the saggy middle.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">08</div>
-                <h3>Sentence Complexity</h3>
-                <p>Structure, variety, and transition word usage.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">09</div>
-                <h3>Repetition & Redundancy</h3>
-                <p>Content-word overuse beyond simple filler detection.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">10</div>
-                <h3>Audience Readability</h3>
-                <p>Vocabulary complexity assessment for your audience.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">11</div>
-                <h3>Pace Consistency</h3>
-                <p>Rhythm variation across sentences — flow vs. monotone.</p>
-            </div>
-            <div class="pro-card reveal">
-                <div class="pro-num">12</div>
-                <h3>Persuasion Score</h3>
-                <p>Argument structure and convincingness.</p>
-            </div>
-            <div class="pro-card reveal pro-card-wide">
-                <div class="pro-num">13</div>
-                <div>
-                    <h3>Confidence Score</h3>
-                    <p>Composite delivery and sentence-strength rating — your single north-star number.</p>
-                </div>
-            </div>
-        </div>
+<!-- ============ USE CASES ============ -->
+<section class="section section-sm" style="background: var(--bg-1);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Built for</span>
+      <h2>Anyone who speaks for a living.<br>Or just wants to.</h2>
     </div>
+
+    <div class="usecases-grid">
+      <div class="usecase-card">
+        <span class="usecase-emoji">🎬</span>
+        <div class="usecase-text">
+          <h4>Content Creators</h4>
+          <p>Record studio-grade videos without memorizing scripts for TikTok, YouTube, Instagram Reels.</p>
+        </div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-emoji">💼</span>
+        <div class="usecase-text">
+          <h4>Job Interview Prep</h4>
+          <p>Practice answers and get graded feedback before the real interview. Land the offer.</p>
+        </div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-emoji">📊</span>
+        <div class="usecase-text">
+          <h4>Investor Pitches</h4>
+          <p>Deliver flawless pitches with voice-paced prompting and confidence scoring on every take.</p>
+        </div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-emoji">🎓</span>
+        <div class="usecase-text">
+          <h4>Students &amp; Teachers</h4>
+          <p>Practice presentations, debate arguments, or class speeches with measurable improvement.</p>
+        </div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-emoji">📞</span>
+        <div class="usecase-text">
+          <h4>Zoom &amp; Google Meet</h4>
+          <p>Use the floating prompter overlay during live video calls. Never lose your place again.</p>
+        </div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-emoji">🗣️</span>
+        <div class="usecase-text">
+          <h4>Public Speakers</h4>
+          <p>Eliminate filler words, master pacing, and project confidence on stage or on camera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============== STATS ============== -->
-<section class="stats">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat reveal">
-                <div class="stat-num">13</div>
-                <div class="stat-label">Pro AI Signals</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat-num">6</div>
-                <div class="stat-label">Practice Modes</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat-num">20</div>
-                <div class="stat-label">Filler Words Tracked</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat-num">0</div>
-                <div class="stat-label">Audio Leaves Device</div>
-            </div>
+<!-- ============ PRIVACY ============ -->
+<section class="section privacy" id="privacy">
+  <div class="container">
+    <div class="privacy-content">
+      <div class="privacy-text">
+        <span class="eyebrow">100% Private</span>
+        <h2>Your voice never leaves your phone.</h2>
+        <p>Every word you speak is processed on-device. No cloud. No servers. No tracking. No data harvesting. You own your voice — we just help you use it better.</p>
+        <ul class="privacy-list">
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            <span>No internet connection required for any analysis</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            <span>Voice is never recorded to a file, uploaded, or shared</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            <span>Uses your device's built-in speech recognition</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            <span>No account, no sign-up, no email required</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            <span>Works on airplane mode, subways, and remote areas</span>
+          </li>
+        </ul>
+      </div>
+      <div class="privacy-visual">
+        <div class="privacy-shield">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z"/></svg>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ============== PRICING ============== -->
-<section class="pricing" id="pricing">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Pricing</div>
-            <h2 class="section-title">Start free. Upgrade when<br><span class="text-gradient">you're ready.</span></h2>
-            <p class="section-subtitle">No account needed. No card on signup. Cancel any time in Google Play.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="price-card reveal">
-                <div class="price-head">
-                    <div class="price-name">Free</div>
-                    <div class="price-tag">Forever free</div>
-                </div>
-                <div class="price-amount">
-                    <span class="amount">₹0</span>
-                </div>
-                <ul class="price-features">
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1 session per day</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 2-minute session limit</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Basic analysis signals</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Letter grade (A–F)</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 7-day session history</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Streak tracking</li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-secondary btn-block">Start Free</a>
-            </div>
-
-            <div class="price-card reveal price-card-popular">
-                <div class="popular-badge">Most Popular</div>
-                <div class="price-head">
-                    <div class="price-name">Pro Yearly</div>
-                    <div class="price-tag">Save 52%</div>
-                </div>
-                <div class="price-amount">
-                    <span class="amount">₹___</span>
-                    <span class="period">/year</span>
-                </div>
-                <ul class="price-features">
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <strong>7-day free trial</strong></li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Unlimited sessions</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All 6 practice modes</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All 13 AI signals</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 90-day history + trend charts</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Personalized AI drills</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All 8 achievement badges</li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-primary btn-block">Start Free Trial</a>
-            </div>
-
-            <div class="price-card reveal">
-                <div class="price-head">
-                    <div class="price-name">Lifetime</div>
-                    <div class="price-tag">One-time payment</div>
-                </div>
-                <div class="price-amount">
-                    <span class="amount">₹___</span>
-                </div>
-                <ul class="price-features">
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <strong>Pay once, own forever</strong></li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Unlimited sessions</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All 6 practice modes</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All 13 AI signals</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All future features</li>
-                    <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No subscription</li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-secondary btn-block">Buy Once</a>
-            </div>
-        </div>
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="container">
+    <div class="rating-pill">
+      <span class="rating-stars">★★★★★</span>
+      <span>Rated for 3+ • Free to install</span>
     </div>
+    <h2>Ready to become a <span class="gradient-text">flawless speaker?</span></h2>
+    <p>Join thousands of creators, professionals, and students who speak with more confidence — every single day. 100% free to start.</p>
+    <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M3 20.5V3.5c0-.85.65-1.5 1.5-1.5 .27 0 .53.07.76.19L13.55 9.3l-3.36 3.36c-.2.2-.2.51 0 .71l3.36 3.36-8.29 7.11c-.23.12-.49.19-.76.19-.85 0-1.5-.65-1.5-1.5zM14.97 9.74l3.55-3.55-12.4-3.04 8.85 6.59zm2.83-2.83L21.34 8.7c.78.42.78 1.58 0 2L17.8 12.49l-3.83-3.79 3.83-3.79zM5.12 19.45l12.4-3.04-3.55-3.55-8.85 6.59z"/></svg>
+      Install SpeakSmart — Free
+    </a>
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">
+      Available on Android 8.0+ • In-app purchases from ₹199
+    </p>
+  </div>
 </section>
 
-<!-- ============== PRIVACY ============== -->
-<section class="privacy" id="privacy">
-    <div class="container">
-        <div class="privacy-grid">
-            <div class="privacy-content reveal">
-                <div class="section-eyebrow">100% Private</div>
-                <h2 class="section-title">Your voice <span class="text-gradient">never leaves your phone.</span></h2>
-                <p class="section-subtitle privacy-desc">
-                    In a world where everything is uploaded to the cloud, SpeakSmart does the opposite.
-                    Every analysis happens locally on your device — in milliseconds, with zero servers involved.
-                </p>
-                <ul class="privacy-list">
-                    <li>
-                        <div class="privacy-check">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <strong>No recordings saved.</strong>
-                            <span>Audio is processed in memory and discarded instantly.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="privacy-check">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <strong>No cloud uploads.</strong>
-                            <span>Speech analysis runs entirely on-device.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="privacy-check">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <strong>No data shared with third parties.</strong>
-                            <span>Verified in Google Play Data Safety.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="privacy-check">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <strong>No account required.</strong>
-                            <span>Just install and start practicing.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="privacy-visual reveal">
-                <div class="privacy-shield">
-                    <div class="shield-ring"></div>
-                    <div class="shield-ring shield-ring-2"></div>
-                    <div class="shield-icon">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-flow">
-                    <div class="flow-step">
-                        <div class="flow-dot"></div>
-                        <div class="flow-text">You speak</div>
-                    </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">
-                        <div class="flow-dot flow-dot-on"></div>
-                        <div class="flow-text">On-device AI</div>
-                    </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">
-                        <div class="flow-dot"></div>
-                        <div class="flow-text">You get feedback</div>
-                    </div>
-                </div>
-                <div class="privacy-note">❌ Cloud · ❌ Servers · ❌ Recording</div>
-            </div>
-        </div>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="images/icon-512.png" alt="SpeakSmart">
+        <span>SpeakSmart by Factictionary</span>
+      </div>
+      <nav class="footer-links">
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener">Google Play</a>
+        <a href="mailto:factictionary@gmail.com">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
     </div>
-</section>
-
-<!-- ============== LANGUAGES ============== -->
-<section class="languages">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Multilingual</div>
-            <h2 class="section-title">Speak in your language.<br><span class="text-gradient-2">Coach in your language.</span></h2>
-        </div>
-        <div class="languages-grid reveal">
-            <div class="lang-card">
-                <div class="lang-flag">🇺🇸</div>
-                <div class="lang-name">English (US)</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇬🇧</div>
-                <div class="lang-name">English (UK)</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇪🇸</div>
-                <div class="lang-name">Spanish</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇫🇷</div>
-                <div class="lang-name">French</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇩🇪</div>
-                <div class="lang-name">German</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇮🇳</div>
-                <div class="lang-name">Hindi</div>
-            </div>
-            <div class="lang-card">
-                <div class="lang-flag">🇵🇹</div>
-                <div class="lang-name">Portuguese</div>
-            </div>
-            <div class="lang-card lang-card-soon">
-                <div class="lang-flag">+</div>
-                <div class="lang-name">More coming</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== TESTIMONIALS ============== -->
-<section class="testimonials" id="testimonials">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Loved by speakers</div>
-            <h2 class="section-title">Trusted by people who<br><span class="text-gradient">can't afford to mumble</span></h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial reveal">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"I've done 30+ interviews in my career. SpeakSmart is the first tool that actually showed me where my fillers were spiking. Got the offer."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar avatar-1">A</div>
-                    <div>
-                        <div class="author-name">Aarav P.</div>
-                        <div class="author-role">Senior PM, FAANG</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial reveal">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"The privacy-first design sealed the deal for me. I'm prepping confidential investor pitches — there's no way I'd use a cloud-based speech app."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar avatar-2">M</div>
-                    <div>
-                        <div class="author-name">Maya R.</div>
-                        <div class="author-role">Founder, Seed-stage</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial reveal">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"The engagement arc insight is wild. I literally saw where my energy sagged mid-presentation. Fixed it in three sessions."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar avatar-3">D</div>
-                    <div>
-                        <div class="author-name">Daniel K.</div>
-                        <div class="author-role">University debater</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== FAQ ============== -->
-<section class="faq" id="faq">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">FAQ</div>
-            <h2 class="section-title">Quick answers to<br><span class="text-gradient-2">common questions</span></h2>
-        </div>
-
-        <div class="faq-list">
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>Is my voice really private?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Yes — 100%. SpeakSmart uses your device's built-in speech recognition and runs all analysis on-device. Your audio is never recorded, never uploaded, and never shared with anyone.</p>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>Do I need an internet connection?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>No. All speech analysis happens locally on your phone. You can practice on a plane, in a basement, or in a privacy-sensitive office without worrying about connectivity.</p>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>Do I need an account?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>No account is required to use SpeakSmart. Just install the app and start practicing. Daily reminders can be scheduled locally on your device too.</p>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>What's the difference between Free and Pro?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Free gives you 1 daily session, 2-minute limit, and core analysis (pace, fillers, clarity, confidence, grade). Pro unlocks unlimited sessions, all 6 practice modes, all 13 AI signals (including Engagement Arc, Persuasion Score, and Confidence Score), 90-day history and personalized drills.</p>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>Which languages are supported?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>English (US & UK), Spanish, French, German, Hindi and Portuguese are supported today, with more languages added regularly.</p>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>How do subscriptions work?</span>
-                    <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Subscriptions are managed through Google Play. They auto-renew unless cancelled at least 24 hours before the renewal date. You can also choose a one-time Lifetime purchase that includes all future features.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== FINAL CTA ============== -->
-<section class="cta">
-    <div class="cta-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-    <div class="container cta-container reveal">
-        <div class="cta-eyebrow">Your next speech deserves better.</div>
-        <h2 class="cta-title">Start speaking with <span class="text-gradient">confidence today.</span></h2>
-        <p class="cta-subtitle">Download SpeakSmart free and run your first AI-coached session in under a minute.</p>
-        <div class="cta-actions">
-            <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener" class="btn btn-primary btn-xl">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                Get it on Google Play
-            </a>
-            <a href="#features" class="btn btn-ghost btn-xl">
-                Learn More
-            </a>
-        </div>
-        <p class="cta-note">Free forever · No account needed · 100% on-device</p>
-    </div>
-</section>
-
-<!-- ============== FOOTER ============== -->
-<footer class="footer">
-    <div class="container footer-container">
-        <div class="footer-brand">
-            <a href="#home" class="nav-brand">
-                <span class="brand-logo">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
-                        <rect x="17" y="9" width="6" height="14" rx="3" fill="white"/>
-                        <path d="M13 21c0 4 3 7 7 7s7-3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <line x1="20" y1="28" x2="20" y2="32" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="16" y1="32" x2="24" y2="32" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </span>
-                <span class="brand-text">SpeakSmart</span>
-            </a>
-            <p class="footer-tagline">Your private AI speech coach.<br>Speak confidently — entirely on your device.</p>
-        </div>
-        <div class="footer-cols">
-            <div class="footer-col">
-                <h4>Product</h4>
-                <a href="#features">Features</a>
-                <a href="#modes">Practice Modes</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#privacy">Privacy</a>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <a href="https://factictionary.in" target="_blank" rel="noopener">Factictionary</a>
-                <a href="mailto:factictionary@gmail.com">Contact</a>
-                <a href="https://speaksmart.factictionary.in/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
-            </div>
-            <div class="footer-col">
-                <h4>Get the App</h4>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.speak_smart" target="_blank" rel="noopener">Google Play</a>
-                <p class="footer-meta">Made with care in Bengaluru, India</p>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <p>© <span id="year"></span> Factictionary. All rights reserved.</p>
-            <p>SpeakSmart is a product of <a href="https://factictionary.in" target="_blank" rel="noopener">Factictionary</a></p>
-        </div>
-    </div>
+    <p class="footer-meta">
+      © 2026 Factictionary. SpeakSmart is a registered trademark. Made with care in Bengaluru, India.
+    </p>
+  </div>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
